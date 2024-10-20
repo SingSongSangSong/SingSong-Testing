@@ -11,7 +11,6 @@ from grpc_interceptor import ClientInterceptor
 # patch grpc so that it uses gevent instead of asyncio
 grpc_gevent.init_gevent()
 
-
 class LocustInterceptor(ClientInterceptor):
     def __init__(self, environment, *args, **kwargs):
         super().__init__(*args, **kwargs)
