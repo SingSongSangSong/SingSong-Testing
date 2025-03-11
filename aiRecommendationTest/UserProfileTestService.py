@@ -1,6 +1,7 @@
 from locust import task, between
 from gRPCInterceptor import GrpcUser
 from proto.userProfileRecommend.userProfileRecommend_pb2 import ProfileRequest, ProfileResponse
+from proto.functionCallingWithTypes.functionCallingWithTypes_pb2 import FunctionCallingWithTypesRequest
 from proto.userProfileRecommend.userProfileRecommend_pb2_grpc import UserProfileStub
 import grpc
 import random
@@ -52,7 +53,7 @@ class HelloGrpcUser(GrpcUser):
 
             # 비동기 호출을 사용해 gRPC 요청 전송
             response_future = self.stub.GetFunctionCallingRecommendation.future(
-                FunctionCallingRequest(memberId=1, command=random_command)
+                FunctionCallingWithTypesRequest(memberId=1, command=random_command)
             )
             response = response_future.result(timeout=5)  # 5초 안에 응답 대기
 
